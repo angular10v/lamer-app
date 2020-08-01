@@ -1,0 +1,108 @@
+<mat-card>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <button mat-raised-button color="primary">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+            Add User
+          </button>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-container">
+        <div class="form-container">
+          <form fxLayout="column" [formGroup]="loginForm" (ngSubmit)="submit()">
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> First Name
+                </mat-label>
+                <input matInput formControlName="firstName" required>
+                <mat-error *ngIf="loginForm.controls.firstName.touched && loginForm.controls.firstName.invalid">
+                  <span *ngIf="loginForm.controls.firstName.errors.required">First Name is required.</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Last Name
+                </mat-label>
+                <input matInput formControlName="lastName" required>
+              </mat-form-field>
+              <mat-error *ngIf="loginForm.controls.lastName.touched && loginForm.controls.lastName.invalid">
+                <span *ngIf="loginForm.controls.lastName.errors.required">First Name is required.</span>
+              </mat-error>
+            </div>
+            <div class="input-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Email
+                </mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                  <span *ngIf="loginForm.controls.email.errors.required">First Name is required.</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Phone
+                </mat-label>
+                <input matInput formControlName="phone" required>
+                <mat-error *ngIf="loginForm.controls.phone.touched && loginForm.controls.phone.invalid">
+                  <span *ngIf="loginForm.controls.phone.errors.required">First Name is required.</span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="input-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Company
+                </mat-label>
+                <input matInput formControlName="company" required>
+                <mat-error *ngIf="loginForm.controls.company.touched && loginForm.controls.company.invalid">
+                  <span *ngIf="loginForm.controls.company.errors.required">First Name is required.</span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="input-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Address
+                </mat-label>
+                <textarea matInput formControlName="address" required></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="loginForm.controls.address.touched && loginForm.controls.address.invalid">
+                <span *ngIf="loginForm.controls.address.errors.required">First Name is required.</span>
+              </mat-error>
+            </div>
+            <button mat-raised-button color="primary" type="submit" class="sub-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="First Name">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Last Name">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Company">
+        <th mat-header-cell *matHeaderCellDef> Company. </th>
+        <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Phone">
+        <th mat-header-cell *matHeaderCellDef> Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address. </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[8, 16]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
